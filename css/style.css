@@ -1,0 +1,741 @@
+/* ==========================================================================
+   style.css — 全站共用樣式
+   自動化設備公司官網
+   修改此檔即可全站生效，請勿在各頁面使用 inline style
+   ========================================================================== */
+
+/* ---------- CSS 變數 ----------------------------------------- */
+:root {
+  /* 品牌色（如業主有指定色系，統一替換此處） */
+  --color-primary:       #1a3a5c;   /* 工業深藍 */
+  --color-primary-light: #2a5298;   /* 中藍 */
+  --color-accent:        #e8902a;   /* 強調橘（按鈕、重點） */
+  --color-accent-hover:  #cf7d1e;
+
+  /* 中性色 */
+  --color-dark:        #1e1e1e;
+  --color-gray-dark:   #3a3a3a;
+  --color-gray-mid:    #6a6a6a;
+  --color-gray-light:  #b0b8c1;
+  --color-border:      #dde3ea;
+  --color-bg:          #f4f6f8;
+  --color-bg-white:    #ffffff;
+
+  /* 文字色 */
+  --color-text:        #1e1e1e;
+  --color-text-sub:    #4a4a4a;
+
+  /* 字型 */
+  --font-body: 'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+
+  /* 間距 */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4.5rem;
+
+  /* 容器 */
+  --container-max: 1200px;
+  --container-pad: 1.5rem;
+
+  /* 通用 */
+  --transition: 0.25s ease;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.13);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.18);
+  --radius:    8px;
+}
+
+/* ---------- Reset -------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg-white);
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---------- 工具類別 ----------------------------------------- */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section { padding-block: var(--spacing-xl); }
+
+.section-header { text-align: center; margin-bottom: var(--spacing-lg); }
+
+.section-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+
+.section-header h2::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.section-header p {
+  margin-top: 0.75rem;
+  color: var(--color-text-sub);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.section-center { text-align: center; }
+
+/* 按鈕 */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: background var(--transition), color var(--transition),
+              transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary { background: var(--color-accent); color: #fff; }
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline { border: 2px solid #fff; color: #fff; }
+.btn-outline:hover { background: #fff; color: var(--color-primary); }
+
+.btn-outline-dark { border: 2px solid var(--color-primary); color: var(--color-primary); }
+.btn-outline-dark:hover { background: var(--color-primary); color: #fff; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-primary);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+/* Logo */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-logo-icon {
+  width: 40px; height: 40px;
+  background: var(--color-accent);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.site-logo-icon svg { width: 22px; height: 22px; fill: #fff; }
+
+.site-logo-text { color: #fff; }
+.site-logo-text .company-name {
+  display: block; font-size: 1.05rem; font-weight: 700;
+  letter-spacing: 0.04em; line-height: 1.2;
+}
+.site-logo-text .company-sub {
+  display: block; font-size: 0.68rem;
+  opacity: 0.72; letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* 導覽列 */
+.site-nav { display: flex; gap: 0; }
+
+.site-nav a {
+  display: block;
+  padding: 0.45rem 1rem;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.94rem; font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a.active { color: #fff; background: rgba(255,255,255,0.12); }
+
+.nav-cta {
+  background: var(--color-accent) !important;
+  color: #fff !important;
+  margin-left: 0.25rem;
+}
+.nav-cta:hover { background: var(--color-accent-hover) !important; }
+
+/* 漢堡按鈕 */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 34px;
+  padding: 4px;
+}
+.menu-toggle span {
+  display: block; height: 2px;
+  background: #fff; border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+.menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--color-dark);
+  color: rgba(255,255,255,0.8);
+  padding-block: var(--spacing-xl) var(--spacing-md);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-brand .company-name {
+  font-size: 1.15rem; font-weight: 700;
+  color: #fff; margin-bottom: 0.6rem;
+}
+.footer-brand p {
+  font-size: 0.9rem; line-height: 1.6;
+  color: rgba(255,255,255,0.62);
+}
+
+.footer-col h4 {
+  color: #fff; font-size: 0.92rem; font-weight: 700;
+  margin-bottom: 0.9rem; padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
+}
+
+.footer-col ul { display: flex; flex-direction: column; gap: 0.45rem; }
+.footer-col ul a { font-size: 0.9rem; color: rgba(255,255,255,0.62); transition: color var(--transition); }
+.footer-col ul a:hover { color: var(--color-accent); }
+
+.footer-contact-list { display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem; }
+.footer-contact-list li { display: flex; gap: 0.5rem; color: rgba(255,255,255,0.62); align-items: flex-start; }
+.footer-contact-list li span:first-child { color: var(--color-accent); flex-shrink: 0; margin-top: 0.05rem; }
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.38);
+}
+
+/* ============================================================
+   HERO（首頁主視覺）
+   ============================================================ */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0d2640 55%, #111927 100%);
+  color: #fff;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(232,144,42,0.18);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.85rem; border-radius: 20px;
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800; line-height: 1.22;
+  margin-bottom: 1.2rem; letter-spacing: 0.01em;
+}
+.hero h1 em { color: var(--color-accent); font-style: normal; }
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 2rem; max-width: 520px;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.hero-stats {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem; padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+
+.stat-item { text-align: center; }
+.stat-number { font-size: 2.2rem; font-weight: 800; color: var(--color-accent); line-height: 1; }
+.stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
+
+/* ============================================================
+   服務特色區塊
+   ============================================================ */
+.features { background: var(--color-bg); }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--color-bg-white);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.feature-card:hover {
+  border-top-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.feature-icon svg { width: 26px; height: 26px; fill: #fff; }
+
+.feature-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; }
+.feature-card p { font-size: 0.93rem; color: var(--color-text-sub); line-height: 1.6; }
+
+/* ============================================================
+   案件卡片（列表 & 首頁精選共用）
+   ============================================================ */
+.project-cards-grid,
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-card {
+  display: flex; flex-direction: column;
+  background: var(--color-bg-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+
+.project-card-img-wrap { overflow: hidden; }
+.project-card img {
+  width: 100%; height: 220px; object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.project-card:hover img { transform: scale(1.04); }
+
+.project-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1; display: flex; flex-direction: column;
+}
+.project-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.4rem; }
+.card-tag { font-size: 0.82rem; color: var(--color-gray-mid); margin-bottom: 0.6rem; }
+.card-summary { font-size: 0.92rem; color: var(--color-text-sub); line-height: 1.6; flex: 1; }
+
+.card-arrow {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: var(--color-primary-light); font-size: 0.88rem; font-weight: 600;
+  margin-top: 1rem;
+  transition: gap var(--transition), color var(--transition);
+}
+.project-card:hover .card-arrow { gap: 0.55rem; color: var(--color-accent); }
+
+/* ============================================================
+   CTA 呼籲區塊
+   ============================================================ */
+.cta-section {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0d2640 100%);
+  color: #fff; text-align: center;
+  padding: var(--spacing-xl) var(--container-pad);
+}
+.cta-section h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800; margin-bottom: 1rem;
+}
+.cta-section p {
+  color: rgba(255,255,255,0.78); font-size: 1.05rem;
+  max-width: 550px; margin-inline: auto; margin-bottom: 2rem;
+}
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   頁面橫幅（各內頁頂部）
+   ============================================================ */
+.page-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0d2640 100%);
+  color: #fff; padding: 3.5rem 0; position: relative; overflow: hidden;
+}
+.page-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.page-banner-content { position: relative; z-index: 1; }
+.page-banner h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 0.5rem; }
+.page-banner p { font-size: 1.03rem; color: rgba(255,255,255,0.76); }
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.88rem; color: rgba(255,255,255,0.56);
+  margin-bottom: 0.75rem;
+}
+.breadcrumb a { color: rgba(255,255,255,0.62); transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--color-accent); }
+.breadcrumb span { color: rgba(255,255,255,0.38); }
+
+/* ============================================================
+   公司簡介頁
+   ============================================================ */
+.about-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl); align-items: center;
+}
+.about-intro-img { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+.about-intro-img img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+
+.about-intro-text h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700; color: var(--color-primary);
+  margin-bottom: 1rem; line-height: 1.3;
+}
+.about-intro-text p { color: var(--color-text-sub); line-height: 1.8; margin-bottom: 1rem; }
+
+/* 里程碑 */
+.milestones { background: var(--color-bg); }
+
+.timeline { max-width: 680px; margin-inline: auto; position: relative; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 88px; top: 0; bottom: 0;
+  width: 2px; background: var(--color-border);
+}
+
+.timeline-item { display: flex; gap: 1.5rem; padding-bottom: var(--spacing-md); position: relative; }
+.timeline-year {
+  flex-shrink: 0; width: 88px;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--color-primary); text-align: right; padding-top: 0.2rem;
+}
+.timeline-dot {
+  flex-shrink: 0; width: 12px; height: 12px;
+  background: var(--color-accent); border-radius: 50%;
+  margin-top: 0.4rem; position: relative; z-index: 1;
+  margin-left: -6px;
+}
+.timeline-text h3 { font-size: 1rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
+.timeline-text p { font-size: 0.92rem; color: var(--color-text-sub); line-height: 1.6; }
+
+/* 核心價值 */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem; text-align: center;
+}
+.value-item {
+  padding: 2rem 1.5rem; background: var(--color-bg-white);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.value-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.value-icon { font-size: 2.4rem; margin-bottom: 0.75rem; }
+.value-item h3 { font-size: 1.05rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; }
+.value-item p { font-size: 0.9rem; color: var(--color-text-sub); line-height: 1.6; }
+
+/* ============================================================
+   產品設備頁
+   ============================================================ */
+.product-list { display: flex; flex-direction: column; gap: 0; }
+
+.product-category {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  padding-block: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+.product-category:last-child { border-bottom: none; }
+.product-category.reverse { direction: rtl; }
+.product-category.reverse > * { direction: ltr; }
+
+.product-img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
+.product-img-wrap img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.product-img-wrap:hover img { transform: scale(1.04); }
+
+.product-cat-badge {
+  display: inline-block; background: rgba(26,58,92,0.08);
+  color: var(--color-primary); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 0.75rem;
+}
+.product-info h3 { font-size: 1.4rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.75rem; }
+.product-info p { color: var(--color-text-sub); line-height: 1.8; margin-bottom: 1rem; }
+.product-info ul { display: flex; flex-direction: column; gap: 0.45rem; }
+.product-info ul li {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 0.94rem; color: var(--color-text-sub);
+}
+.product-info ul li::before {
+  content: ''; display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--color-accent); border-radius: 50%; flex-shrink: 0;
+}
+
+/* ============================================================
+   案件詳細頁
+   ============================================================ */
+.project-detail { padding-block: var(--spacing-xl); }
+
+.project-detail-inner {
+  display: grid; grid-template-columns: 1fr 300px;
+  gap: var(--spacing-lg); align-items: start;
+}
+
+.project-main-content h2 {
+  font-size: 1.3rem; font-weight: 700; color: var(--color-primary);
+  margin-top: 2rem; margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem; border-bottom: 2px solid var(--color-bg);
+}
+.project-main-content h2:first-child { margin-top: 0; }
+.project-main-content p { color: var(--color-text-sub); line-height: 1.82; margin-bottom: 1rem; }
+
+/* 相簿 */
+.project-gallery { margin-top: 2.5rem; }
+.project-gallery h2 {
+  font-size: 1.3rem; font-weight: 700; color: var(--color-primary);
+  margin-bottom: 1rem; padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-bg);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.gallery-item {
+  border-radius: 6px; overflow: hidden;
+  cursor: pointer; aspect-ratio: 4/3;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+
+/* 側欄資訊卡 */
+.project-sidebar { position: sticky; top: 90px; }
+
+.project-meta-card {
+  background: var(--color-bg); border-radius: var(--radius);
+  padding: 1.5rem; margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+.project-meta-card h3 {
+  font-size: 0.82rem; font-weight: 700; color: var(--color-gray-mid);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 1rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.meta-row { display: flex; flex-direction: column; gap: 0.8rem; }
+.meta-item label {
+  display: block; font-size: 0.78rem; color: var(--color-gray-mid);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.15rem;
+}
+.meta-item span { font-size: 0.95rem; font-weight: 600; color: var(--color-text); }
+
+.project-back-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: var(--color-primary-light); font-size: 0.9rem; font-weight: 600;
+  transition: gap var(--transition), color var(--transition);
+}
+.project-back-btn:hover { color: var(--color-accent); gap: 0.65rem; }
+
+/* ============================================================
+   聯絡頁
+   ============================================================ */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: var(--spacing-xl); align-items: start;
+}
+
+.contact-info h2 { font-size: 1.4rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.75rem; }
+.contact-info > p { color: var(--color-text-sub); line-height: 1.7; margin-bottom: 1.75rem; }
+
+.contact-items { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+.contact-item-icon {
+  width: 44px; height: 44px; background: var(--color-primary);
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.contact-item-icon svg { width: 20px; height: 20px; fill: #fff; }
+.contact-item-text label {
+  display: block; font-size: 0.78rem; color: var(--color-gray-mid);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem;
+}
+.contact-item-text span { font-size: 0.95rem; color: var(--color-text); line-height: 1.5; }
+
+.map-wrap {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-md); border: 1px solid var(--color-border);
+}
+.map-wrap iframe { display: block; width: 100%; height: 420px; border: none; }
+
+/* ============================================================
+   燈箱 Lightbox
+   ============================================================ */
+.lightbox-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92); z-index: 9999;
+  align-items: center; justify-content: center;
+}
+.lightbox-overlay.is-open { display: flex; }
+
+.lightbox-content { position: relative; }
+.lightbox-img {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain; border-radius: 4px;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute; top: -2.5rem; right: 0;
+  color: #fff; font-size: 2rem; line-height: 1; cursor: pointer;
+  opacity: 0.75; transition: opacity var(--transition);
+}
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-prev, .lightbox-next {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  color: #fff; font-size: 2.5rem; cursor: pointer;
+  opacity: 0.65; transition: opacity var(--transition);
+  padding: 1rem; z-index: 10000; user-select: none;
+}
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; }
+
+/* ============================================================
+   RWD 響應式斷點
+   ============================================================ */
+@media (max-width: 960px) {
+  .about-intro,
+  .product-category,
+  .product-category.reverse,
+  .project-detail-inner,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: var(--spacing-lg);
+  }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .project-sidebar { position: static; }
+}
+
+@media (max-width: 720px) {
+  /* 手機選單 */
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--color-primary);
+    padding: 1rem;
+    box-shadow: var(--shadow-md);
+    gap: 0.2rem;
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav a { padding: 0.7rem 1rem; }
+  .menu-toggle { display: flex; }
+  .header-inner { position: relative; }
+
+  /* 版面調整 */
+  .hero { padding: 5rem 0 3.5rem; }
+  .hero-stats { grid-template-columns: 1fr; gap: 1.25rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .project-cards-grid, .projects-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  :root {
+    --spacing-xl: 3rem;
+    --spacing-lg: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { text-align: center; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .cta-actions { flex-direction: column; align-items: center; }
+}
