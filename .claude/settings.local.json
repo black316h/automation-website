@@ -15,7 +15,8 @@
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('狀態:', d.get\\('status'\\)\\); print\\('網址:', d.get\\('html_url'\\)\\)\")",
       "Bash(git push *)",
       "Bash(find \"C:\\\\20260615COMU\" -maxdepth 3 -type f 2>/dev/null | head -100; echo \"---DIRS---\"; find \"C:\\\\20260615COMU\" -maxdepth 2 -type d 2>/dev/null)",
-      "Bash(xargs -0 sed -i 's/精銳自動化科技/愛默思科技/g; s/Precision Automation Tech\\\\./Amos Technology/g')"
+      "Bash(xargs -0 sed -i 's/精銳自動化科技/愛默思科技/g; s/Precision Automation Tech\\\\./Amos Technology/g')",
+      "Bash(xargs -0 sed -i 's|your-domain\\\\.com|amos-design.com|g')"
     ]
   }
 }
