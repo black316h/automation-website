@@ -16,7 +16,20 @@
       "Bash(git push *)",
       "Bash(find \"C:\\\\20260615COMU\" -maxdepth 3 -type f 2>/dev/null | head -100; echo \"---DIRS---\"; find \"C:\\\\20260615COMU\" -maxdepth 2 -type d 2>/dev/null)",
       "Bash(xargs -0 sed -i 's/精銳自動化科技/愛默思科技/g; s/Precision Automation Tech\\\\./Amos Technology/g')",
-      "Bash(xargs -0 sed -i 's|your-domain\\\\.com|amos-design.com|g')"
+      "Bash(xargs -0 sed -i 's|your-domain\\\\.com|amos-design.com|g')",
+      "Bash(nslookup amos-design.com 1.1.1.1)",
+      "Bash(nslookup amos-design.com)",
+      "Bash(nslookup www.amos-design.com 1.1.1.1)",
+      "Bash(curl -sI http://amos-design.com)",
+      "Bash(curl -sI https://amos-design.com)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('cname:', d.get\\('cname'\\)\\); print\\('status:', d.get\\('status'\\)\\); print\\('https_certificate:', \\(d.get\\('https_certificate'\\) or {}\\).get\\('state'\\)\\)\")",
+      "Bash(echo \"exit=$?\")",
+      "mcp__bf7c680d-5fdc-5ef4-b4a0-abadb619bf0a__send_later",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); c=d.get\\('https_certificate'\\) or {}; print\\('status:', d.get\\('status'\\)\\); print\\('憑證狀態:', c.get\\('state'\\)\\); print\\('https_enforced:', d.get\\('https_enforced'\\)\\)\")",
+      "Bash(echo \"curl_exit=$?\")",
+      "Bash(curl -sv https://amos-design.com)",
+      "Bash(curl -s -o /dev/null -w \"HTTP碼:%{http_code} SSL驗證:%{ssl_verify_result}\\\\n\" https://amos-design.com)",
+      "Bash(xargs -0 sed -i -e s/台灣台中市工業區○○路○○號/彰化縣大村鄉擺塘村擺塘巷17-60號/g -e 's/407 台灣台中市西屯區工業區○○路○○號/彰化縣大村鄉擺塘村擺塘巷17-60號/g' -e s/+886-4-XXXX-XXXX/0911-759-936/g -e 's/info@your-company\\\\.com\\\\.tw/black316h@gmail.com/g')"
     ]
   }
 }
