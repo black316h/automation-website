@@ -31,7 +31,19 @@
       "Bash(curl -s -o /dev/null -w \"HTTP碼:%{http_code} SSL驗證:%{ssl_verify_result}\\\\n\" https://amos-design.com)",
       "Bash(xargs -0 sed -i -e s/台灣台中市工業區○○路○○號/彰化縣大村鄉擺塘村擺塘巷17-60號/g -e 's/407 台灣台中市西屯區工業區○○路○○號/彰化縣大村鄉擺塘村擺塘巷17-60號/g' -e s/+886-4-XXXX-XXXX/0911-759-936/g -e 's/info@your-company\\\\.com\\\\.tw/black316h@gmail.com/g')",
       "Bash(file amos-logo-clean.png)",
-      "Bash(python -c \"from PIL import Image; im=Image.open\\('amos-logo-clean.png'\\); print\\('尺寸:', im.size, '模式:', im.mode\\)\")"
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('amos-logo-clean.png'\\); print\\('尺寸:', im.size, '模式:', im.mode\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); c=d.get\\('https_certificate'\\) or {}; print\\('憑證狀態:', c.get\\('state'\\)\\); print\\('https_enforced:', d.get\\('https_enforced'\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP碼:%{http_code}\\\\n\" https://amos-design.com)",
+      "Bash(timeout 10 openssl s_client -connect amos-design.com:443 -servername amos-design.com)",
+      "Bash(openssl x509 *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('cname:', repr\\(d.get\\('cname'\\)\\)\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); c=d.get\\('https_certificate'\\) or {}; print\\('cname:', d.get\\('cname'\\)\\); print\\('status:', d.get\\('status'\\)\\); print\\('憑證:', c.get\\('state'\\)\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('https_enforced:', d.get\\('https_enforced'\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"https://amos-design.com  →  HTTP %{http_code}\\\\n\" https://amos-design.com)",
+      "Bash(curl -s -o /dev/null -w \"http 版  →  HTTP %{http_code} \\(轉址至 %{redirect_url}\\)\\\\n\" http://amos-design.com)",
+      "Bash(git pull *)",
+      "Bash(sed -i 's/超過 15 年/超過 40 年/g' index.html about.html)",
+      "Bash(sed -i 's/15 年製造業經驗/40 年製造業經驗/' promo-threads.html)"
     ]
   }
 }
