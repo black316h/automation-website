@@ -159,14 +159,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .site-logo-icon {
-  width: 40px; height: 40px;
-  background: var(--color-accent);
-  border-radius: 6px;
+  width: 42px; height: 42px;
+  background: #fff;
+  border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 .site-logo-icon svg { width: 22px; height: 22px; fill: #fff; }
+.site-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 .site-logo-text { color: #fff; }
 .site-logo-text .company-name {
