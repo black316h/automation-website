@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amos-design.com/sitemap.xml
